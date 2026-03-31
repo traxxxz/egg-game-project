@@ -1,5 +1,5 @@
 
-const API = "http://localhost:3000/api";
+const API = "https://egg-game-api.onrender.com/api";
 
 const state = {
   token: null,
