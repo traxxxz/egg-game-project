@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>اذا جوكم بيض 🥚</title>
+  <link rel="stylesheet" href="./assets/styles.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="hero glass">
+      <div class="hero-main">
+        <h2 class="main-label">لعبة</h2>
+        <h1>اذا جوكم بيض 🥚</h1>
+        <p class="sub">منصة مرنة للأسئلة والتحديات والفعاليات مع حسابات مستخدمين وصلاحيات متعددة وسجل ألعاب محفوظ وقابل للتطوير.</p>
+      </div>
+      <div class="hero-side">
+        <div class="stats-grid">
+          <div class="stat-box"><strong id="statQuestions">0</strong><span>الأسئلة</span></div>
+          <div class="stat-box"><strong id="statChallenges">0</strong><span>التحديات</span></div>
+          <div class="stat-box"><strong id="statEvents">0</strong><span>الفعاليات</span></div>
+          <div class="stat-box"><strong id="statPlayers">0</strong><span>المتسابقون</span></div>
+        </div>
+      </div>
+    </header>
+
+    <section class="glass auth-section">
+      <div class="auth-actions">
+        <button id="showAdminLoginBtn" class="btn primary">دخول الإدارة</button>
+        <button id="showSubscriberLoginBtn" class="btn secondary">دخول المشتركين</button>
+        <button id="showMemberLoginBtn" class="btn secondary">دخول الأعضاء</button>
+        <button id="logoutBtn" class="btn danger hidden">تسجيل الخروج</button>
+      </div>
+
+      <div id="authMessage" class="muted">اختر نوع الحساب للدخول أو أنشئ حساب عضو جديد.</div>
+
+      <div id="adminLoginCard" class="login-card hidden">
+        <h3>تسجيل دخول الإدارة</h3>
+        <div class="grid-2">
+          <input id="adminUsername" placeholder="اسم المستخدم" />
+          <input id="adminPassword" type="password" placeholder="كلمة المرور" />
+        </div>
+        <button id="adminLoginBtn" class="btn primary">دخول</button>
+      </div>
+
+      <div id="subscriberLoginCard" class="login-card hidden">
+        <h3>تسجيل دخول المشتركين</h3>
+        <div class="grid-2">
+          <input id="subscriberUsername" placeholder="اسم المستخدم" />
+          <input id="subscriberPassword" type="password" placeholder="كلمة المرور" />
+        </div>
+        <button id="subscriberLoginBtn" class="btn primary">دخول</button>
+      </div>
+
+      <div id="memberLoginCard" class="login-card hidden">
+        <h3>تسجيل دخول الأعضاء</h3>
+        <div class="grid-2">
+          <input id="memberUsername" placeholder="اسم المستخدم" />
+          <input id="memberPassword" type="password" placeholder="كلمة المرور" />
+        </div>
+        <div class="row">
+          <button id="memberLoginBtn" class="btn primary">دخول</button>
+          <button id="showRegisterBtn" class="btn secondary">إنشاء حساب عضو</button>
+        </div>
+      </div>
+
+      <div id="memberRegisterCard" class="login-card hidden">
+        <h3>إنشاء حساب عضو</h3>
+        <div class="grid-2">
+          <input id="registerName" placeholder="الاسم الظاهر" />
+          <input id="registerUsername" placeholder="اسم المستخدم" />
+          <input id="registerPassword" type="password" placeholder="كلمة المرور" />
+          <input id="registerEmoji" placeholder="إيموجي 😀" />
+        </div>
+        <button id="registerBtn" class="btn success">تسجيل العضوية</button>
+      </div>
+    </section>
+
+    <section id="dashboard" class="layout hidden">
+      <aside class="side-col left-col">
+        <section class="glass card">
+          <h3>المتسابقون أو الفرق</h3>
+          <div class="row">
+            <input id="playerName" placeholder="اسم المتسابق أو الفريق" />
+            <input id="playerEmoji" class="small-input" placeholder="إيموجي 😎" />
+          </div>
+          <button id="addPlayerBtn" class="btn primary full">إضافة</button>
+          <div id="playersList" class="stack"></div>
+        </section>
+
+        <section id="sideToolsCard" class="glass card">
+          <h3>أدوات جانبية</h3>
+          <div class="stack">
+            <button id="randomPlayerBtn" class="btn secondary">اختيار متسابق عشوائي</button>
+            <button id="nextRoundBtn" class="btn secondary">الجولة التالية</button>
+            <button id="exportArchiveBtn" class="btn secondary">تصدير سجل الحساب</button>
+          </div>
+        </section>
+
+        <section id="contentCard" class="glass card hidden">
+          <h3>إضافة محتوى</h3>
+          <div class="tabs mini-tabs">
+            <button class="tab active create-tab" data-create="question">سؤال</button>
+            <button class="tab create-tab" data-create="challenge">تحدي</button>
+            <button class="tab create-tab" data-create="event">فعالية</button>
+          </div>
+          <input id="contentCategory" placeholder="التصنيف" />
+          <input id="contentMeta" placeholder="الإجابة أو الشرط أو الإيموجي" />
+          <textarea id="contentText" placeholder="النص"></textarea>
+          <button id="saveContentBtn" class="btn success full">حفظ</button>
+        </section>
+
+        <section id="bulkUploadCard" class="glass card hidden">
+          <h3>رفع أسئلة دفعة واحدة</h3>
+          <p class="muted">يدعم TXT و PDF و DOCX وفق التنسيق: السؤال ثم خط فاصل ثم الخيارات أو الإجابة مرقمة.</p>
+          <input id="bulkFileInput" type="file" accept=".txt,.pdf,.doc,.docx" />
+          <button id="bulkUploadBtn" class="btn primary full">رفع الملف وإضافة الأسئلة</button>
+          <div class="muted" id="bulkUploadResult"></div>
+        </section>
+      </aside>
+
+      <main class="main-col">
+        <section class="glass main-card">
+          <div class="main-top">
+            <div class="tabs">
+              <button class="tab active mode-tab" data-mode="quiz">الأسئلة</button>
+              <button class="tab mode-tab" data-mode="challenge">التحديات</button>
+              <button class="tab mode-tab" data-mode="event">الفعاليات</button>
+            </div>
+            <div class="main-actions">
+              <button id="newItemBtn" class="btn primary">عنصر جديد</button>
+              <button id="revealAnswerBtn" class="btn secondary">إظهار الإجابة</button>
+              <button id="awardBtn" class="btn success">منح 3 نقاط</button>
+            </div>
+          </div>
+
+          <div class="chips">
+            <span id="roundChip" class="chip">الجولة: 1</span>
+            <span id="categoryChip" class="chip">التصنيف: —</span>
+            <span id="typeChip" class="chip">النوع: —</span>
+          </div>
+
+          <div class="main-display">
+            <h2 id="headline">اضغط على "عنصر جديد" للبدء</h2>
+            <div id="bodyText" class="body-text">سيظهر المحتوى الأساسي هنا.</div>
+            <div id="answerBox" class="answer-box hidden"></div>
+          </div>
+        </section>
+
+        <section class="glass main-card">
+          <h3>النتائج</h3>
+          <div id="podium" class="results-grid"></div>
+        </section>
+      </main>
+
+      <aside class="side-col right-col">
+        <section class="glass card">
+          <h3>حالة الحساب</h3>
+          <div id="accountInfo" class="muted">لا يوجد تسجيل دخول.</div>
+        </section>
+
+        <section id="userManagerCard" class="glass card hidden">
+          <h3>إدارة الحسابات</h3>
+          <div class="grid-2">
+            <input id="newUserDisplayName" placeholder="الاسم الظاهر" />
+            <input id="newUserUsername" placeholder="اسم المستخدم" />
+            <input id="newUserPassword" placeholder="كلمة المرور" />
+            <select id="newUserRole">
+              <option value="subscriber">مشترك</option>
+              <option value="supervisor">مشرف</option>
+            </select>
+          </div>
+          <button id="createUserBtn" class="btn primary full">إنشاء حساب</button>
+          <div class="permissions-box">
+            <h4>صلاحيات المشرفين</h4>
+            <select id="permissionUserSelect"></select>
+            <label><input id="permManageGame" type="checkbox" /> إدارة اللعبة</label>
+            <label><input id="permManageContent" type="checkbox" /> إدارة المحتوى</label>
+            <label><input id="permManageUsers" type="checkbox" /> إدارة الحسابات</label>
+            <label><input id="permExportImport" type="checkbox" /> التصدير والاستيراد</label>
+            <button id="savePermissionsBtn" class="btn secondary full">حفظ الصلاحيات</button>
+          </div>
+          <div id="usersList" class="stack"></div>
+        </section>
+
+        <section class="glass card">
+          <h3>سجل الألعاب للحساب الحالي</h3>
+          <button id="refreshArchiveBtn" class="btn secondary full">تحديث السجل</button>
+          <div id="archiveList" class="stack"></div>
+        </section>
+      </aside>
+    </section>
+  </div>
+
+  <script src="./assets/app.js"></script>
+</body>
+</html>

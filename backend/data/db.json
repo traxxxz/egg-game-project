@@ -1,0 +1,14 @@
+{
+  "users": [],
+  "contents": {
+    "questions": [],
+    "challenges": [],
+    "events": []
+  },
+  "gameState": {
+    "round": 1,
+    "players": [],
+    "history": []
+  },
+  "archives": []
+}
